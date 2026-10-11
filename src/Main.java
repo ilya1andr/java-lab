@@ -305,6 +305,9 @@ public class Main {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Ошибка: нужно ввести целое число.");
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.out.println("Ошибка: неверный формат ввода.");
             } catch (IllegalArgumentException e) {
                 System.out.println("Ошибка: " + e.getMessage());
             } catch (ArithmeticException e) {
