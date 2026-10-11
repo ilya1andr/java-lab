@@ -93,9 +93,7 @@ class Matrix {
 
     Matrix findComp(Matrix B) {
         if (this.cols != B.rows) {
-            throw new IllegalArgumentException(
-                    "Умножение невозможно: число столбцов первой (" + this.cols +
-                            ") не равно числу строк второй (" + B.rows + ")");
+            throw new IllegalArgumentException("Умножение невозможно");
         }
         Matrix res = new Matrix(this.rows, B.cols);
         for (int i = 0; i < this.rows; i++) {
@@ -318,9 +316,13 @@ public class Main {
     }
 
     static Matrix readMatrix(Scanner sc, String name) {
-        System.out.println("Введите количество строк и столбцов для " + name);
-        int r = readPositiveInt(sc, "строк");
-        int c = readPositiveInt(sc, "столбцов");
+        System.out.print("Введите количество строк для " + name + ": ");
+        int r = sc.nextInt();
+        sc.nextLine();
+
+        System.out.print("Введите количество столбцов для " + name + ": ");
+        int c = sc.nextInt();
+        sc.nextLine();
 
         Matrix m = new Matrix(r, c);
         System.out.println("Введите элементы матрицы " + name + " (" + r + "x" + c + ").");
@@ -328,12 +330,13 @@ public class Main {
 
         for (int i = 0; i < m.rows; i++) {
             for (int j = 0; j < m.cols; j++) {
-                System.out.print("[" + i + "][" + j + "]: ");
+                System.out.print("Элемент [" + i + "][" + j + "]: ");
                 double re = readDouble(sc);
                 double im = readDouble(sc);
                 m.data[i][j] = new Complex(re, im);
             }
         }
+        sc.nextLine();
         return m;
     }
 
